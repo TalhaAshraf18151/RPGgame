@@ -1,5 +1,8 @@
 #!/bin/python3
 
+
+directions = ['up', 'down', 'right', 'left']
+
 def opening_screen():
     # print a main menu and the commands
     print('''
@@ -10,26 +13,25 @@ Get to the Garden with a key and a potion
 Avoid the monsters!
 
 Commands:
-  go [direction] directions: north, south, east, west 
-  interact 
-''')
+ go [direction] ''' 'valid directions = ' + directions.__str__() +
+  '\n interact'
+)
 
 
 def help_screen():
     print('''
     Get to the Garden with a key and a potion
-    Avoid the monsters!
+Avoid the monsters!
 
 Commands:
-  go [direction] direction: north, south, east, west 
-  interact
-    '''
+ go [direction] ''' 'valid directions' + directions.__str__() +
+  '\n interact'
 
           )
 
 def Status():
     # print the player's current status
-    print(currentRoom)
+    print("\n" + currentRoom)
     # print the current interactable
 
 
@@ -62,8 +64,23 @@ rooms = {
 }
 
 
-def intrtact_Spawn():
-    Pass
+def intractSpawn_room():
+    print('this will be the intraction in spawn room')
+
+
+
+def intractroom1():
+    print('this will be the intraction in room1')
+
+def intractroom2():
+    print('this will be the intraction in room 2')
+
+
+def intractroom3():
+    print('this will be the intraction in room 3')
+
+def intractroom4():
+    print('this will be the intraction in room 4')
 
 # start the player in the Hall
 currentRoom = 'Spawn_room'
@@ -82,12 +99,33 @@ while True:
     # ['go','east']
     input_user = ''
     while input_user == '':
-        input_user = input('>')
+        input_user = input('-')
 
     input_user = input_user.lower().split()
 
+    currentRoom = currentRoom
+
+    # if they type 'interact'
+    if input_user[0] == 'interact':
+        if currentRoom == 'Spawn_room':
+            intractSpawn_room()
+
+    if input_user[0] == 'interact' and currentRoom == 'room1':
+        intractroom1()
+
+    if input_user[0] == 'interact' and currentRoom == 'room2':
+        intractroom2()
+
+    if input_user[0] == 'interact' and currentRoom == 'room3':
+        intractroom3()
+
+    if input_user[0] == 'interact' and currentRoom == 'room4':
+        intractroom4()
+
+
+
     # if they type 'go' first
-    if input_user[0] == 'go':
+    if input_user[0] == 'go' or 'move':
         # check that they are allowed wherever they want to go
         if input_user[1] in rooms[currentRoom]:
             # set the current room to the new room
@@ -98,24 +136,11 @@ while True:
         else:
             print('You can\'t go that way!')
 
-    # if they type 'interact'
-    if input_user[0] == 'interact':
 
 
 
-
-        # if the room contains an item, and the item is the one they want to get
-      #  if 'item' in rooms[currentRoom] and go[1] in rooms[currentRoom]['item']:
-            # add the item to their inventory
-       #     inventory += [go[1]]
-            # display a helpful message
-        #    print(go[1] + ' got!')
-            # delete the item from the room
-         #   del rooms[currentRoom]['item']
-        # otherwise, if the item isn't there to get
-        #else:
-            # tell them they can't get it
-         #   print('Can\'t get ' + go[1] + '!')
+   # else:
+    #    help_screen()
 
     # player wins if they get to the garden with a key and a shield
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
