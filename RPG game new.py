@@ -10,9 +10,10 @@ Get to the Garden with a key and a potion
 Avoid the monsters!
 
 Commands:
-  move [direction] directions: north, south, east, west 
-  get [item]
+  go [direction] directions: north, south, east, west 
+  interact 
 ''')
+
 
 def help_screen():
     print('''
@@ -20,17 +21,17 @@ def help_screen():
     Avoid the monsters!
 
 Commands:
-  move [direction] direction: north, south, east, west 
-  get [item]
+  go [direction] direction: north, south, east, west 
+  interact
     '''
 
-
-    )
+          )
 
 def Status():
     # print the player's current status
     print(currentRoom)
-    # print the current inventory
+    # print the current interactable
+
 
 # an inventory, which is initially empty
 inventory = []
@@ -38,34 +39,32 @@ inventory = []
 # a dictionary linking a room to other room positions
 rooms = {
 
-    'Spawn room': {'north': 'room1',
-             'east': 'room4'
-             },
+    'Spawn room': {'up': 'room1',
+                   'right': 'room4',
+                    'interactable': 'intro sheet'
+                   },
 
-    'room1': {'south': 'Spawn room',
-                'east': 'room2',
-              'west': 'room3'
-                },
+    'room1': {'down': 'Spawn room',
+              'right': 'room2',
+              'left': 'room3'
+              },
 
-    'room2': {'west': 'room1',
-                    'south': 'room4'
+    'room2': {'left': 'room1',
+              'down': 'room4'
 
-                    },
+              },
 
-    'room3': {'east': 'room1'},
+    'room3': {'right': 'room1'},
 
-    'room4': {'north': 'room2',
-              'west': 'spawn'}
+    'room4': {'up': 'room2',
+              'left': 'Spawn room'}
 
 }
 
 
-
-
-
-
 # start the player in the Hall
 currentRoom = 'Spawn room'
+
 
 opening_screen()
 
@@ -76,8 +75,8 @@ while True:
 
     # get the player's next 'move'
     # .split() breaks it up into an list array
-    # eg typing 'go east' would give the list:
-    # ['go','east']
+    # eg typing 'go left' would give the list:
+    # ['go','left']
     go = ''
     while go == '':
         go = input('>')
@@ -91,10 +90,8 @@ while True:
             # set the current room to the new room
             currentRoom = rooms[currentRoom][go[1]]
         # there is no door (link) to the new room
-        elif go[1].lower() not in ['north','south','east', 'west']:
-            print('Thats not a direction I recognise')
         else:
-            print('You can\'t go that way!')
+            print('There is no room in that direction')
 
     # if they type 'get' first
     if go[0] == 'get':
@@ -110,7 +107,6 @@ while True:
         else:
             # tell them they can't get it
             print('Can\'t get ' + go[1] + '!')
-
 
     # player wins if they get to the garden with a key and a shield
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
