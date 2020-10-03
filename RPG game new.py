@@ -39,12 +39,12 @@ inventory = []
 # a dictionary linking a room to other room positions
 rooms = {
 
-    'Spawn room': {'up': 'room1',
+    'Spawn_room': {'up': 'room1',
                    'right': 'room4',
-                    'interactable': 'intro sheet'
+                    'intractable': 'intro sheet'
                    },
 
-    'room1': {'down': 'Spawn room',
+    'room1': {'down': 'Spawn_room',
               'right': 'room2',
               'left': 'room3'
               },
@@ -57,13 +57,16 @@ rooms = {
     'room3': {'right': 'room1'},
 
     'room4': {'up': 'room2',
-              'left': 'Spawn room'}
+              'left': 'Spawn_room'}
 
 }
 
 
+def intrtact_Spawn():
+    Pass
+
 # start the player in the Hall
-currentRoom = 'Spawn room'
+currentRoom = 'Spawn_room'
 
 
 opening_screen()
@@ -75,38 +78,44 @@ while True:
 
     # get the player's next 'move'
     # .split() breaks it up into an list array
-    # eg typing 'go left' would give the list:
-    # ['go','left']
-    go = ''
-    while go == '':
-        go = input('>')
+    # eg typing 'go east' would give the list:
+    # ['go','east']
+    input_user = ''
+    while input_user == '':
+        input_user = input('>')
 
-    go = go.lower().split()
+    input_user = input_user.lower().split()
 
     # if they type 'go' first
-    if go[0] == 'go' or 'move':
+    if input_user[0] == 'go':
         # check that they are allowed wherever they want to go
-        if go[1] in rooms[currentRoom]:
+        if input_user[1] in rooms[currentRoom]:
             # set the current room to the new room
-            currentRoom = rooms[currentRoom][go[1]]
+            currentRoom = rooms[currentRoom][input_user[1]]
+        elif input_user[1] not in directions:
+            print('thats not a direction I recognise try ' + directions.__str__())
         # there is no door (link) to the new room
         else:
-            print('There is no room in that direction')
+            print('You can\'t go that way!')
 
-    # if they type 'get' first
-    if go[0] == 'get':
+    # if they type 'interact'
+    if input_user[0] == 'interact':
+
+
+
+
         # if the room contains an item, and the item is the one they want to get
-        if 'item' in rooms[currentRoom] and go[1] in rooms[currentRoom]['item']:
+      #  if 'item' in rooms[currentRoom] and go[1] in rooms[currentRoom]['item']:
             # add the item to their inventory
-            inventory += [go[1]]
+       #     inventory += [go[1]]
             # display a helpful message
-            print(go[1] + ' got!')
+        #    print(go[1] + ' got!')
             # delete the item from the room
-            del rooms[currentRoom]['item']
+         #   del rooms[currentRoom]['item']
         # otherwise, if the item isn't there to get
-        else:
+        #else:
             # tell them they can't get it
-            print('Can\'t get ' + go[1] + '!')
+         #   print('Can\'t get ' + go[1] + '!')
 
     # player wins if they get to the garden with a key and a shield
     if currentRoom == 'Garden' and 'key' in inventory and 'potion' in inventory:
