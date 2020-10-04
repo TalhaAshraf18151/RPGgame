@@ -45,7 +45,7 @@ def intractSpawn_room():
 rooms = dict(Spawn_room={'up': 'room1',
                          'right': 'room4',
                          'intractable': 'intro sheet',
-                         'function': intractSpawn_room()
+                         'function': intractSpawn_room
 
                          }, room1={'down': 'Spawn_room',
                                    'right': 'room2',
@@ -114,7 +114,15 @@ while win_status == 'loss':
         # there is no door (link) to the new room
         else:
             print('You can\'t go that way!')
-            
+
+    elif input_user == 'interact':
+        callable(rooms[currentRoom]['function']())
+
+
+
+    elif input_user not in directions or 'interact':
+        print('invalid command')
+        help_screen()
 
 
     # if they type 'interact' first
