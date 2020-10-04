@@ -9,17 +9,13 @@ def opening_screen():
     print('''
 Enviro schools RPG game 
 By Talha Ashraf
-
-Commands:
-''' + directions.__str__() +
-          '\n interact'
+Type 'interact' to begin'''
           )
 
 
 def help_screen():
     print('''
-    Get to the Garden with a key and a potion
-Avoid the monsters!
+    Get to room three and solve the challenge
 
 Commands:''' + directions.__str__()+
           '\n interact'
