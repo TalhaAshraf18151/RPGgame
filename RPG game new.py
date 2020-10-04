@@ -7,11 +7,8 @@ directions = ['up', 'down', 'right', 'left']
 def opening_screen():
     # print a main menu and the commands
     print('''
-RPG Game
-========
-
-Get to the Garden with a key and a potion
-Avoid the monsters!
+Enviro schools RPG game 
+By Talha Ashraf
 
 Commands:
 ''' + directions.__str__() +
@@ -41,31 +38,6 @@ def intractSpawn_room():
     print('this will be the intraction in spawn room')
 
 
-# a dictionary linking a room to other room positions
-rooms = dict(Spawn_room={'up': 'room1',
-                         'right': 'room4',
-                         'intractable': 'intro sheet',
-                         'function': intractSpawn_room
-
-                         }, room1={'down': 'Spawn_room',
-                                   'right': 'room2',
-                                   'left': 'room3',
-                                   'intractable': '!room1'
-
-                                   }, room2={'left': 'room1',
-                                             'down': 'room4',
-                                             'intractable': '!room2'
-
-                                             }, room3={'right': 'room1',
-                                                       'intractable': '!room3'}, room4={'up': 'room2',
-                                                                                        'left': 'Spawn_room',
-                                                                                        'intractable': '!room4'})
-
-
-def intractSpawn_room():
-    print('this will be the intraction in spawn room')
-
-
 def intractroom1():
     print('this will be the intraction in room1')
 
@@ -77,9 +49,29 @@ def intractroom2():
 def intractroom3():
     print('this will be the intraction in room 3')
 
+# a dictionary linking a room to other room positions
+rooms = dict(Spawn_room={'up': 'room1',
+                         'intractable': 'intro sheet',
+                         'function': intractSpawn_room
 
-def intractroom4():
-    print('this will be the intraction in room 4')
+                         }, room1={'down': 'Spawn_room',
+                                   'right': 'room2',
+                                   'intractable': '!room1',
+                                   'function': intractroom1
+
+                                   }, room2={'left': 'room1',
+                                             'down': 'room3',
+                                             'intractable': '!room2',
+                                             'function': intractroom2
+
+                                             }, room3={'left': 'Spawn_room',
+                                                       'up': 'Room2',
+                                                       'intractable': '!room3',
+                                                       'function': intractroom3})
+
+
+
+
 
 win_status = 'loss'
 
