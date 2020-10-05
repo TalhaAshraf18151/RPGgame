@@ -1,8 +1,9 @@
 #!/bin/python3
-
+import sys
+import time
 
 directions = ['up', 'down', 'right', 'left']
-
+commands = ['up', 'down', 'right', 'left', 'interact']
 
 def opening_screen():
     # print a main menu and the commands
@@ -15,10 +16,9 @@ Type 'interact' to begin'''
 
 def help_screen():
     print('''
-    Get to room three and solve the challenge
+Get to room three and solve the challenge
 
-Commands:''' + directions.__str__()+
-          '\n interact'
+Commands:''' + commands.__str__()
 
           )
 
@@ -28,10 +28,24 @@ def Status():
     print("\n" + currentRoom)
     # print the current interactable
     if 'intractable' in rooms[currentRoom]:
-        print(rooms[currentRoom]['intractable'])
+        print('You see ' + rooms[currentRoom]['intractable'])
+
+
+opening_messege = '''Welcome to the enviroschools RPG game. This game aims to educate you about plastic pollution 
+in New Zealand. To win this game you have to find room three and finish the challenge in it. 
+To move type ''' + directions.__str__() + '''. Every room you are in will tell you it\'s name and the item in it.
+To interact with the item type "interact". To get help at any time type "help". The next room is north of this one
+GLHF ^__^'''
+
 
 def intractSpawn_room():
-    print('this will be the intraction in spawn room')
+    for letter in opening_messege:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.03)
+
+
+
 
 
 def intractroom1():
@@ -106,6 +120,8 @@ while win_status == 'loss':
     elif input_user == 'interact':
         callable(rooms[currentRoom]['function']())
 
+    elif input_user == 'help':
+        help_screen()
 
 
     elif input_user not in directions or 'interact':
