@@ -8,6 +8,7 @@ commands = ['up', 'down', 'right', 'left', 'interact']
 def opening_screen():
     # print a main menu and the commands
     print('''
+---------------------------   
 Enviro schools RPG game 
 By Talha Ashraf
 Type 'interact' to begin'''
@@ -25,7 +26,8 @@ Commands:''' + commands.__str__()
 
 def Status():
     # print the player's current status
-    print("\n" + currentRoom)
+    print('\n----------------------------')
+    print('You are in ' + currentRoom)
     # print the current interactable
     if 'intractable' in rooms[currentRoom]:
         print('You see ' + rooms[currentRoom]['intractable'])
@@ -34,7 +36,7 @@ def Status():
 opening_messege = '''Welcome to the enviroschools RPG game. This game aims to educate you about plastic pollution 
 in New Zealand. To win this game you have to find room three and finish the challenge in it. 
 To move type ''' + directions.__str__() + '''. Every room you are in will tell you it\'s name and the item in it.
-To interact with the item type "interact". To get help at any time type "help". The next room is north of this one
+To interact with the item type "interact". To get help at any time type "help". The next room is north of this one.
 GLHF ^__^'''
 
 
@@ -46,13 +48,23 @@ def intractSpawn_room():
 
 
 
+info_1 = 'You must take information from the scroll of truth to the next room and answer the quiz'
+
+scroll_of_truth='''
+-Each New Zealander consumes approximately 31 kg of plastic packaging every single year
+-Each New Zealander recycles approximately 5.58kgs of plastic packaging every single year
+-Recycling a single plastic bottle can conserve enough energy to power a 60W bulb for 3 hours
+'''
+
+def intractScroll_room():
+    print(info_1)
+    for letter in scroll_of_truth:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.03)
 
 
-def intractroom1():
-    print('this will be the intraction in room1')
-
-
-def intractroom2():
+def intractTest_room():
     print('this will be the intraction in room 2')
 
 
@@ -60,22 +72,22 @@ def intractroom3():
     print('this will be the intraction in room 3')
 
 # a dictionary linking a room to other room positions
-rooms = dict(Spawn_room={'up': 'room1',
+rooms = dict(Spawn_room={'up': 'Scroll_room',
                          'intractable': 'intro sheet',
                          'function': intractSpawn_room
 
-                         }, room1={'down': 'Spawn_room',
-                                   'right': 'room2',
-                                   'intractable': '!room1',
-                                   'function': intractroom1
+                         }, Scroll_room={'down': 'Spawn_room',
+                                   'right': 'Test_room',
+                                   'intractable': 'Scroll of truth',
+                                   'function': intractScroll_room
 
-                                   }, room2={'left': 'room1',
+                                   }, Test_room={'left': 'Scroll_room',
                                              'down': 'room3',
-                                             'intractable': '!room2',
-                                             'function': intractroom2
+                                             'intractable': 'Tablet',
+                                             'function': intractTest_room
 
                                              }, room3={'left': 'Spawn_room',
-                                                       'up': 'Room2',
+                                                       'up': 'Test_room',
                                                        'intractable': '!room3',
                                                        'function': intractroom3})
 
