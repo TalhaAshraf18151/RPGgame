@@ -17,7 +17,7 @@ Type 'interact' to begin'''
 
 def help_screen():
     print('''
-Get to room three and solve the challenge
+Get to the Quiz_room and solve the challenge
 
 Commands:''' + commands.__str__()
 
@@ -34,7 +34,7 @@ def Status():
 
 
 opening_messege = '''Welcome to the enviroschools RPG game. This game aims to educate you about plastic pollution 
-in New Zealand. To win this game you have to find room three and finish the challenge in it. 
+in New Zealand. To win this game you have to find the Quiz_room and finish the challenge in it. 
 To move type ''' + directions.__str__() + '''. Every room you are in will tell you it\'s name and the item in it.
 To interact with the item type "interact". To get help at any time type "help". The next room is north of this one.
 GLHF ^__^'''
@@ -45,7 +45,6 @@ def intractSpawn_room():
         sys.stdout.write(letter)
         sys.stdout.flush()
         time.sleep(0.03)
-
 
 
 info_1 = 'You must take information from the scroll of truth to the next room and answer the quiz'
@@ -68,7 +67,7 @@ def intractTest_room():
     print('this will be the intraction in room 2')
 
 
-def intractroom3():
+def intractQuiz_room():
     print('this will be the intraction in room 3')
 
 # a dictionary linking a room to other room positions
@@ -82,14 +81,14 @@ rooms = dict(Spawn_room={'up': 'Scroll_room',
                                    'function': intractScroll_room
 
                                    }, Test_room={'left': 'Scroll_room',
-                                             'down': 'room3',
+                                             'down': 'Quiz_room',
                                              'intractable': 'Tablet',
                                              'function': intractTest_room
 
-                                             }, room3={'left': 'Spawn_room',
+                                             }, Quiz_room={'left': 'Spawn_room',
                                                        'up': 'Test_room',
-                                                       'intractable': '!room3',
-                                                       'function': intractroom3})
+                                                       'intractable': '!Quiz_room',
+                                                       'function': intractQuiz_room})
 
 
 
