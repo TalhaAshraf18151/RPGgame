@@ -127,10 +127,10 @@ while win_status == 'loss':
         # there is no door (link) to the new room
         else:
             print('You can\'t go that way!')
-
+    #calls function for room
     elif input_user == 'interact':
         callable(rooms[currentRoom]['function']())
-
+    #if user asks for help
     elif input_user == 'help':
         help_screen()
 
@@ -138,8 +138,3 @@ while win_status == 'loss':
     elif input_user not in directions or 'interact':
         print('invalid command')
         help_screen()
-
-
-    # if they type 'interact' first
-
-    #if input_user == rooms[currentRoom]['intractable']:
