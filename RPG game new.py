@@ -134,7 +134,7 @@ while win_status == 'loss':
     elif input_user == 'help':
         help_screen()
 
-
+    #deals with unusable values
     elif input_user not in directions or 'interact':
         print('invalid command')
         help_screen()
