@@ -1,5 +1,4 @@
-#Develop Room1 function here before plugging into main game
-
+#Develop Room2 function here before plugging into main game
 info_1 = 'You must take information from the scroll of truth to the next room and answer the quiz'
 
 scroll_of_truth='''
