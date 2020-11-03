@@ -37,13 +37,13 @@ def Status():
 
 
 #function for recording user's name and greeting
-name = 'some'
+name = ""
 
 
 def namefunc():
     global name
     print('What is your name?')
-    name = input(">")
+    name += input(">")
     print('Nice to meet you ' + name)
 
 
@@ -58,7 +58,7 @@ def intractSpawn_room():
 
 
 
-opening_messege = '''Welcome to the enviroschools RPG game. This game aims to educate you about plastic pollution 
+opening_messege = '''Welcome to the enviroschools RPG game''' + name + '''. This game aims to educate you about plastic pollution 
 in New Zealand. To win this game you have to find the Quiz_room and finish the challenge in it. 
 To move type ''' + directions.__str__() + '''. Every room you are in will tell you it\'s name and the item in it.
 To interact with the item type "interact". To get help at any time type "help". The next room is *NORTH* of this one.
@@ -90,32 +90,48 @@ def intractQuiz_room():
     t0 = time.time()
     global correct_answers
     q1 = input("\nQ1) What should you do to a plastic food wrapper after you have eaten the food? \na) Eat the wrapper as well\nb) Dispose of it in a bin\nc) Throw it on the ground\n>")
-    if q1 == "a":
-        print("Good job correct answer")
+    if q1.lower() == "b":
+        print("Good job correct answer\n")
         correct_answers += 1
     else:
         print("Oops, seems like you are incorrect the correct answer is actually \nb) Dispose of it in a bin.")
 
     q2 = input("\nQ2) How much plastic does the average New Zealander recycle? \na7.3 kg\nb)5.58 kg\nc)6.9 kg\n>")
-    if q2 == "b":
-        print("Good job correct answer")
+    if q2.lower() == "b":
+        print("Good job correct answer\n")
         correct_answers += 1
     else:
-        print("Oops, seems like you are incorrect the correct answer is actually \nb)5.58 kg")
+        print("Oops, seems like you are incorrect the correct answer is actually \nb)5.58 kg\n")
 
     q3 = input("How long can it take plastic to break down? \na)9000 years\nb)100 years\nc)1000 years\n>")
-    if q3 == "c":
-        print("Good job correct answer")
+    if q3.lower() == "c":
+        print("Good job correct answer\n")
         correct_answers += 1
     else:
-        print("Oops, seems like you are incorrect the correct answer is actually \nc)1000 years")
+        print("Oops, seems like you are incorrect the correct answer is actually \nc)1000 years\n")
 
-    q4 = input("Recycling a single plastic bottle conserves enough energy to power a 60W bulb for how long?\na)60 mins\nb)30 mins\nc)20 mins\n>")
-    if q4 == "b":
-        print("Good job correct answer")
+    q4 = input("Recycling a single plastic bottle conserves enough energy to power a 60W bulb for how long?\na)30 mins\nb)60 mins\nc)20 mins\n>")
+    if q4.lower() == "a":
+        print("Good job correct answer\n")
         correct_answers += 1
     else:
-        print("Oops, seems like you are incorrect the correct answer is actually \nb)30 mins")
+        print("Oops, seems like you are incorrect the correct answer is actually \na)30 mins\n")
+    if correct_answers == 4:
+        print("###################"
+              "GOOD JOB YOU WON !!"
+              "###################")
+        print("Thanks for playing my game. I hope you learnt something today:)")
+        exit()
+    elif correct_answers == 3:
+        print("Try again. You're so close!!")
+    elif correct_answers < 3:
+        print("Try again I'm sure you can do this")
+
+
+
+
+
+
 
 
 # a dictionary linking a room to other room positions
@@ -176,5 +192,5 @@ while True:
     # deals with unusable values
     elif input_user not in directions or 'interact':
         print("---------------------------")
-        print('invalid command')
+        print('\ninvalid command')
         help_screen()
