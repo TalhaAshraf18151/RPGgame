@@ -1,7 +1,6 @@
 # !/bin/python3
 
 ## BY TALHA ASHRAF
-import sys
 import time
 import sys
 
@@ -110,13 +109,18 @@ def score_check():
 
 correct_answers = 0
 
+
+#Quiz function that runs in the last room
+#an input asks a question with a prompt
+#if and elif statements used to deterimne if answer is correct
 def intractQuiz_room():
+    #records time when function starts to determine total time taken at the end
     t0 = time.time()
     global correct_answers
     q1 = input("\nQ1) What should you do to a plastic food wrapper after you have eaten the food? \na) Eat the wrapper as well\nb) Dispose of it in a bin\nc) Throw it on the ground\n>")
     if q1.lower() == "b":
         print("Good job correct answer\n")
-        correct_answers += 1
+        correct_answers += 1 #counter for score
     elif len(q1) > 1:
         print("\ninvalid command")
     else:
@@ -189,9 +193,6 @@ while True:
     Status()
 
     # get the player's next 'move'
-    # .split() breaks it up into an list array
-    # eg typing 'go east' would give the list:
-    # ['go','east']
     input_user = ''
     while input_user == '':
         input_user = input('>')
