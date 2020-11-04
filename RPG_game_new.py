@@ -3,6 +3,7 @@
 ## BY TALHA ASHRAF
 import sys
 import time
+import sys
 
 directions = ['up', 'down', 'right', 'left']
 commands = ['up', 'down', 'right', 'left', 'interact']
@@ -38,8 +39,6 @@ def Status():
 
 #function for recording user's name and greeting
 name = ""
-
-
 def namefunc():
     global name
     print('What is your name?')
@@ -58,7 +57,7 @@ def intractSpawn_room():
 
 
 
-opening_messege = '''Welcome to the enviroschools RPG game''' + name + '''. This game aims to educate you about plastic pollution 
+opening_messege = '''Welcome to the enviroschools RPG game. This game aims to educate you about plastic pollution 
 in New Zealand. To win this game you have to find the Quiz_room and finish the challenge in it. 
 To move type ''' + directions.__str__() + '''. Every room you are in will tell you it\'s name and the item in it.
 To interact with the item type "interact". To get help at any time type "help". The next room is *NORTH* of this one.
@@ -67,10 +66,18 @@ GLHF ^__^'''
 info_1 = 'You must take information from the scroll of truth to the next room and answer the quiz'
 
 scroll_of_truth = '''
+*reading scroll*
 -Each New Zealander consumes approximately 31 kg of plastic packaging every single year
 -Each New Zealander recycles approximately 5.58kgs of plastic packaging every single year
 -Recycling a single plastic bottle can conserve enough energy to power a 60W bulb for 3 hours
+
+Those are just some facts but I would like help you think deeper into the problem. We like to blame  people like you and
+I for disposing of their plastic irresponsibly  but why does nobody talk about how manufacturers continue to use single 
+use plastic packaging while being well aware of its impact. I urge you to not only dispose of plastic responsibly so 
+that it does not cause any more harm to the environment but also to raise your voice and support to force companies to 
+find an alternate to plastic and save our planet.
 '''
+
 
 #Runs when user interacts with item in Scroll_room
 
@@ -84,6 +91,23 @@ def intractScroll_room():
 
 
 
+#score checker function
+def score_check():
+    if correct_answers == 4:
+        print("###################"
+              "GOOD JOB YOU WON !!"
+              "###################")
+        time.sleep(10)
+        print("Thanks for playing my game. I hope you learnt something today:)")
+        exit()
+    elif correct_answers == 3:
+        print("Try again. You're so close you got 3 right")
+    elif correct_answers < 3:
+        print("Try again you got " + correct_answers.__str__() + ' correct')
+
+
+
+
 correct_answers = 0
 
 def intractQuiz_room():
@@ -93,8 +117,12 @@ def intractQuiz_room():
     if q1.lower() == "b":
         print("Good job correct answer\n")
         correct_answers += 1
+    elif len(q1) > 1:
+        print("\ninvalid command")
     else:
         print("Oops, seems like you are incorrect the correct answer is actually \nb) Dispose of it in a bin.")
+    print('current score is ' + correct_answers.__str__())
+    print("\n")
 
     q2 = input("\nQ2) How much plastic does the average New Zealander recycle? \na7.3 kg\nb)5.58 kg\nc)6.9 kg\n>")
     if q2.lower() == "b":
@@ -102,6 +130,8 @@ def intractQuiz_room():
         correct_answers += 1
     else:
         print("Oops, seems like you are incorrect the correct answer is actually \nb)5.58 kg\n")
+    print('current score is ' + correct_answers.__str__())
+    print("\n")
 
     q3 = input("How long can it take plastic to break down? \na)9000 years\nb)100 years\nc)1000 years\n>")
     if q3.lower() == "c":
@@ -109,29 +139,26 @@ def intractQuiz_room():
         correct_answers += 1
     else:
         print("Oops, seems like you are incorrect the correct answer is actually \nc)1000 years\n")
+    print('current score is ' + correct_answers.__str__())
+    print("\n")
 
-    q4 = input("Recycling a single plastic bottle conserves enough energy to power a 60W bulb for how long?\na)30 mins\nb)60 mins\nc)20 mins\n>")
-    if q4.lower() == "a":
+    q4 = input("How much plastic does the each New Zealander use in a year?\na)72 Kg\nb)14 Kg\nc)31 Kg")
+    if q4.lower() =="c":
+        print("Good job correct answer\n")
+        correct_answers += 1
+    else:
+        print("Oops, seems like you are incorrect the correct answer is actually \nc)31 Kg\n")
+
+
+    q5 = input("Recycling a single plastic bottle conserves enough energy to power a 60W bulb for how long?\na)30 mins\nb)60 mins\nc)20 mins\n>")
+    if q5.lower() == "a":
         print("Good job correct answer\n")
         correct_answers += 1
     else:
         print("Oops, seems like you are incorrect the correct answer is actually \na)30 mins\n")
-    if correct_answers == 4:
-        print("###################"
-              "GOOD JOB YOU WON !!"
-              "###################")
-        print("Thanks for playing my game. I hope you learnt something today:)")
-        exit()
-    elif correct_answers == 3:
-        print("Try again. You're so close!!")
-    elif correct_answers < 3:
-        print("Try again I'm sure you can do this")
-
-
-
-
-
-
+    t1 = time.time() - t0
+    print("It only took you " + round(t1).__str__() + " seconds")
+    score_check()
 
 
 # a dictionary linking a room to other room positions
@@ -167,7 +194,7 @@ while True:
     # ['go','east']
     input_user = ''
     while input_user == '':
-        input_user = input('-')
+        input_user = input('>')
 
     input_user = input_user.lower()
 
