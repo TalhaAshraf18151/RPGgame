@@ -1,3 +1,4 @@
 "# RPGgame" 
 Talha Ashraf
-Run the Spawn_room_func.py to play game.
+
+1- Click the green 
