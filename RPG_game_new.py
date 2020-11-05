@@ -157,7 +157,7 @@ def intractQuiz_room():
     print('current score is ' + correct_answers.__str__())
     print("\n")
 
-    q4 = input("How much plastic does the each New Zealander use in a year?\na) 72 Kg\nb) 14 Kg\nc) 31\n>")
+    q4 = input("How much plastic does the each New Zealander use in a year?\na) 72 Kg\nb) 14 Kg\nc) 31 Kg\n>")
     if q4.lower() =="c":
         print("Good job correct answer\n")
         correct_answers += 1
@@ -175,6 +175,7 @@ def intractQuiz_room():
     t1 = time.time() - t0
     print("It only took you " + round(t1).__str__() + " seconds")
     score_check()
+    correct_answers = 0
 
 
 # a dictionary linking a room to other room positions
@@ -221,7 +222,7 @@ while True:
             print('that\'s not a direction I recognise try ' + directions.__str__())
         # there is no door (link) to the new room
         else:
-            print('You can\'t go that way!')
+            print('You can\'t go that way!!!')
     # calls function for room
     elif input_user in ['interact', 'read', 'pick']:
         callable(rooms[current_room]['function']())
