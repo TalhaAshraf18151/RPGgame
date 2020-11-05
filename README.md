@@ -1,7 +1,7 @@
 "# RPGgame" 
 Talha Ashraf
 
-##To download and play the game follow the following steps
+## To download and play the game follow the following steps
 
 1-Click the green button that says "Code"
 
