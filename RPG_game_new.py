@@ -1,6 +1,9 @@
 # !/bin/python3
 
-## BY TALHA ASHRAF
+# BY TALHA ASHRAF 6/11/2020
+#Enviro schools RPG game
+
+
 import time
 import sys
 
